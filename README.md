@@ -9,6 +9,7 @@ We study societal bias amplification in image captioning. We propose LIC, a metr
 </div>
 
 The classifier is trained to predict the attributes of the person in the image.
+
 Attribute-revealing words are masked before being fed into the classifier.
 
 <div align="center">
