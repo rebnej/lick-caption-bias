@@ -20,7 +20,7 @@ To compute bias amplification, compare the accuracies of the 2 classifiers.
 
 ## Setup
 1. Clone the repository.
-2. Download the [data](https://drive.google.com/drive/folders/1PI03BqcnhdXZi2QY9PUHzWn4cxgdonT-?usp=sharing) and place in the current directory.
+2. Download the [data](https://drive.google.com/drive/folders/1PI03BqcnhdXZi2QY9PUHzWn4cxgdonT-?usp=sharing) (folder name: bias_data) and place in the current directory.
 3. Install dependancies:
   ### For LSTM classifier
     - Python 3.7
@@ -38,46 +38,46 @@ To compute bias amplification, compare the accuracies of the 2 classifiers.
     - sklearn
     
 ## Evaluation
-1. train the classifier on human/generated captions. 
-2. calculate LIC on human/generated captions.
+1. Train the classifier on human/generated captions. 
+2. Calculate LIC on human/generated captions.
 
   ### For LSTM classifier
     For training the classifier and calculating LIC on human captions in terms of gender bias.   
     - sh run_gender_lstm_ann.sh 
     
-    For training the classifier and calculating LIC on generated captions by captioning models in terms of gender bias.
+    For training the classifier and calculating LIC on generated captions in terms of gender bias.
     - sh run_gender_lstm_model.sh 
     
     For training the classifier and calculating LIC on human captions in terms of racial bias.
     - sh run_race_lstm_ann.sh 
     
-    For training the classifier and calculating LIC on generated captions by captioning models in terms of racial bias.
+    For training the classifier and calculating LIC on generated captions in terms of racial bias.
     - sh run_race_lstm_model.sh 
     
   ### For BERT classifier
     For training the classifier and calculating LIC on human captions in terms of gender bias. 
     - sh run_gender_bert_ann.sh 
     
-    For training the classifier and calculating LIC on generated captions by captioning models in terms of gender bias.
+    For training the classifier and calculating LIC on generated captions in terms of gender bias.
     - sh run_gender_bert_model.sh 
     
     For training the classifier and calculating LIC on human captions in terms of racial bias.
     - sh run_race_bert_ann.sh 
     
-    For training the classifier and calculating LIC on generated captions by captioning models in terms of racial bias.
+    For training the classifier and calculating LIC on generated captions in terms of racial bias.
     - sh run_race_bert_model.sh 
     
   ### For BERT classifier (BERT is not finetuned)
     For training the classifier and calculating LIC on human captions in terms of gender bias. 
     - sh run_gender_bert_freeze_ann.sh 
     
-    For training the classifier and calculating LIC on generated captions by captioning models in terms of gender bias.
+    For training the classifier and calculating LIC on generated captions in terms of gender bias.
     - sh run_gender_bert_freeze_model.sh 
     
     For training the classifier and calculating LIC on human captions in terms of racial bias.
     - sh run_race_bert_freeze_ann.sh 
     
-    For training the classifier and calculating LIC on generated captions by captioning models in terms of racial bias.
+    For training the classifier and calculating LIC on generated captions in terms of racial bias.
     - sh run_race_bert_freeze_model.sh 
 
 **Note**: The classifier is trained 10 times with random initializations, and the results are reported by the average and standard deviation.
