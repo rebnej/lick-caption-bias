@@ -22,10 +22,11 @@ To compute bias amplification, compare the accuracies of the 2 classifiers.
 ## Setup
 1. Clone the repository.
 2. Download the [data](https://drive.google.com/drive/folders/1PI03BqcnhdXZi2QY9PUHzWn4cxgdonT-?usp=sharing) (folder name: bias_data) and place in the current directory.
-  The folder contains human/generated captions and corresponding gender/racial annotations. 
-
-**Note**: gender/racial annotations are from ["Understanding and Evaluating Racial Biases in Image Captioning"](Understanding and Evaluating Racial Biases in Image Captioning).  
+  The folder contains human/generated captions and corresponding gender/racial annotations.   
 3. Install dependancies:
+
+**Note**: gender/racial annotations are from ["Understanding and Evaluating Racial Biases in Image Captioning"](Understanding and Evaluating Racial Biases in Image Captioning).
+
   ### For LSTM classifier
     - Python 3.7
     - numpy 
