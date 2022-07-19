@@ -1,1 +1,1 @@
-# lick-caption-bias
+# Quantifying Societal Bias Amplification in Image Captioning
