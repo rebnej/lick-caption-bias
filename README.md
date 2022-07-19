@@ -6,17 +6,17 @@ We study societal bias amplification in image captioning. Image captioning model
 1. Clone the repository.
 2. Download the [data](https://drive.google.com/drive/folders/1PI03BqcnhdXZi2QY9PUHzWn4cxgdonT-?usp=sharing) and place in the current directory.
 3. Install dependancies:
-### For LSTM classifier
-  - Python 3.7
-  - numpy 
-  - pytorch 1.9
-  - torchtext 0.10.0 
-  - spacy 
-  - sklearn 
-### For BERT classifier
-  - Python 3.7
-  - numpy
-  - pytorch 1.4
-  - transformers 4.0.1
-  - spacy 2.3
-  - sklearn
+  ### For LSTM classifier
+    - Python 3.7
+    - numpy 
+    - pytorch 1.9
+    - torchtext 0.10.0 
+    - spacy 
+    - sklearn 
+  ### For BERT classifier
+    - Python 3.7
+    - numpy
+    - pytorch 1.4
+    - transformers 4.0.1
+    - spacy 2.3
+    - sklearn
