@@ -28,12 +28,16 @@ We study societal bias amplification in image captioning. Image captioning model
   ### For LSTM classifier
     For training the classifier and calculating LIC on human captions in terms of gender bias.   
     - sh run_gender_lstm_ann.sh 
+    
     For training the classifier and calculating LIC on generated captions by captioning models in terms of gender bias.
     - sh run_gender_lstm_model.sh 
+    
     For training the classifier and calculating LIC on human captions in terms of racial bias.
     - sh run_race_lstm_ann.sh 
+    
     For training the classifier and calculating LIC on generated captions by captioning models in terms of racial bias.
     - sh run_race_lstm_model.sh 
+    
   ### For BERT classifier
     For training the classifier and calculating LIC on human captions in terms of gender bias. 
     - sh run_gender_bert_ann.sh 
