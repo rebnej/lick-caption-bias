@@ -17,7 +17,7 @@ This repository contains source code necessary to reproduce the results presente
 
 
 <div align="center">
-<img src="run_scripts/LIC_classifier.png" width="800pix"/>
+<img src="run_scripts/LIC_classifier.png" width="700pix"/>
 </div>
 
 
@@ -40,7 +40,7 @@ This repository contains source code necessary to reproduce the results presente
     - spacy 2.3
     - sklearn
     
-## Evaluation
+## Compute LIC  
 
   ### For LSTM classifier
     For training the classifier and calculating LIC on human captions in terms of gender bias.   
