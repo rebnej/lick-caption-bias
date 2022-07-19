@@ -41,19 +41,26 @@ We study societal bias amplification in image captioning. Image captioning model
   ### For BERT classifier
     For training the classifier and calculating LIC on human captions in terms of gender bias. 
     - sh run_gender_bert_ann.sh 
+    
     For training the classifier and calculating LIC on generated captions by captioning models in terms of gender bias.
     - sh run_gender_bert_model.sh 
+    
     For training the classifier and calculating LIC on human captions in terms of racial bias.
     - sh run_race_bert_ann.sh 
+    
     For training the classifier and calculating LIC on generated captions by captioning models in terms of racial bias.
     - sh run_race_bert_model.sh 
+    
   ### For BERT classifier (BERT is not finetuned)
     For training the classifier and calculating LIC on human captions in terms of gender bias. 
     - sh run_gender_bert_freeze_ann.sh 
+    
     For training the classifier and calculating LIC on generated captions by captioning models in terms of gender bias.
     - sh run_gender_bert_freeze_model.sh 
+    
     For training the classifier and calculating LIC on human captions in terms of racial bias.
     - sh run_race_bert_freeze_ann.sh 
+    
     For training the classifier and calculating LIC on generated captions by captioning models in terms of racial bias.
     - sh run_race_bert_freeze_model.sh 
     
