@@ -31,8 +31,24 @@ We study societal bias amplification in image captioning. Image captioning model
     - sh run_gender_bert_ann.sh (human caption, gender)
     - sh run_gender_bert_model.sh (generated caption, gender)
     - sh run_race_bert_ann.sh (human caption, race)
-    -- sh run_race_bert_model.sh (generated caption, race)
+    - sh run_race_bert_model.sh (generated caption, race)
+    
+## Results
+LIC score for each capptioning model:
 
+|             |         LSTM         |       BERT-ft
+|             | -------------------  | -------------------
+|Model        | LIC_M | LIC_D | LIC  | LIC_M | LIC_D | LIC 
+|-------      |
+|NIC          |
+|SAT          |
+|FC           |
+|Att2in       |
+|UpDn         |
+|Transformer  |
+|OSCAR        |
+|NIC+         |
+|NIC+Equalizer|
 ## Citation
     @inproceedings{hirota2022quantifying,
       title={Quantifying Societal Bias Amplification in Image Captioning},
