@@ -1,12 +1,14 @@
 # Quantifying Societal Bias Amplification in Image Captioning
 This repository contains source code necessary to reproduce the results presented in the paper [Quantifying Societal Bias Amplification in Image Captioning](https://openaccess.thecvf.com/content/CVPR2022/html/Hirota_Quantifying_Societal_Bias_Amplification_in_Image_Captioning_CVPR_2022_paper.html) (CVPR 2022, Oral). Please check the project website [here](https://sites.google.com/view/cvpr-2022-quantify-bias/home).
 
-## Introduction
-We study societal bias amplification in image captioning. We propose LIC, a metric to study captioning bias amplification.
 
 <div align="center">
 <img src="run_scripts/LIC_train.png" width="800pix"/>
 </div>
+
+
+## Introduction
+We study societal bias amplification in image captioning. We propose LIC, a metric to study captioning bias amplification.
 
 The classifier is trained to predict the attributes of the person in the image.
 
@@ -38,8 +40,6 @@ To compute bias amplification, compare the accuracies of the 2 classifiers.
     - sklearn
     
 ## Evaluation
-1. Train the classifier on human/generated captions. 
-2. Calculate LIC on human/generated captions.
 
   ### For LSTM classifier
     For training the classifier and calculating LIC on human captions in terms of gender bias.   
