@@ -21,7 +21,7 @@ To compute bias amplification, compare the accuracies of the 2 classifiers.
 
 ## Setup
 1. Clone the repository.
-2. Download the [data](https://drive.google.com/drive/folders/1PI03BqcnhdXZi2QY9PUHzWn4cxgdonT-?usp=sharing) and place in the current directory.
+2. Download the [data](https://drive.google.com/drive/folders/1PI03BqcnhdXZi2QY9PUHzWn4cxgdonT-?usp=sharing) (folder name: bias_data) and place in the current directory.
 3. Install dependancies:
   ### For LSTM classifier
     - Python 3.7
