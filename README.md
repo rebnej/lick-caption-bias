@@ -32,6 +32,11 @@ We study societal bias amplification in image captioning. Image captioning model
     - sh run_gender_bert_model.sh (generated caption, gender)
     - sh run_race_bert_ann.sh (human caption, race)
     - sh run_race_bert_model.sh (generated caption, race)
+  ### For BERT classifier (BERT is not finetuned)
+    - sh run_gender_bert_freeze_ann.sh (human caption, gender)
+    - sh run_gender_bert_freeze_model.sh (generated caption, gender)
+    - sh run_race_bert_freeze_ann.sh (human caption, race)
+    - sh run_race_bert_freeze_model.sh (generated caption, race)
 
 **Note**: The classifier is trained 10 times with random initializations, and the results are reported by the average and standard deviation.
     
