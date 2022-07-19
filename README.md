@@ -37,7 +37,6 @@ We study societal bias amplification in image captioning. Image captioning model
 LIC score for each capptioning model:
 
 |             |         LSTM          |       BERT-ft         |
-|             |-----------------------|-----------------------|
 |Model        | LIC_M | LIC_D | LIC   | LIC_M | LIC_D | LIC   |
 |-------------|-------|-------|-------|-------|-------|-------|
 |NIC          |-------|-------|-------|-------|-------|-------|
