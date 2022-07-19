@@ -7,18 +7,19 @@ This repository contains source code necessary to reproduce the results presente
 </div>
 
 
-## Introduction
-We study societal bias amplification in image captioning. We propose LIC, a metric to study captioning bias amplification.
 
-The classifier is trained to predict the attributes of the person in the image.
 
-Attribute-revealing words are masked before being fed into the classifier.
+## LIC metric
+1. Mask attribute-revealing words. 
+2. Train 2 classifiers on human/generated captions to predict the attributes of the person in the image.
+3. Calculate LIC scores for each classifier. 
+4. To compute bias amplification, take the difference of the LIC socres between 2 classifiers.
+
 
 <div align="center">
 <img src="run_scripts/LIC_classifier.png" width="800pix"/>
 </div>
 
-To compute bias amplification, compare the accuracies of the 2 classifiers.
 
 ## Setup
 1. Clone the repository.
