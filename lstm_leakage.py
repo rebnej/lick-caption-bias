@@ -313,12 +313,12 @@ def evaluate(model, iterator, criterion, batch_size, TEXT, args):
 
 
 def main(args):
-    if os.path.exists('/bias-vl/train.csv'):
-        os.remove('/bias-vl/train.csv')
-    if os.path.exists('/bias-vl/val.csv'):
-        os.remove('/bias-vl/val.csv')
-    if os.path.exists('/bias-vl/test.csv'):
-        os.remove('/bias-vl/test.csv')
+    if os.path.exists('bias_data/train.csv'):
+        os.remove('bias_data/train.csv')
+    if os.path.exists('bias_data/val.csv'):
+        os.remove('bias_data/val.csv')
+    if os.path.exists('bias_data/test.csv'):
+        os.remove('bias_data/test.csv')
 
     torch.backends.cudnn.deterministic = True
     random.seed(args.seed)
@@ -334,7 +334,6 @@ def main(args):
     TEXT = data.Field(tokenize = 'spacy', tokenizer_language ='en_core_web_sm', include_lengths = True)
 
     LABEL = data.LabelField(dtype = torch.float)
-    gender_obj_cap_mw_entries = pickle.load(open('bias_data/gender_obj_cap_mw_entries.pkl', 'rb')) 
     
     #Select captioning model
     if args.cap_model == 'nic':
@@ -403,12 +402,12 @@ def main(args):
             rand_score_list = []
             
             if args.align_vocab:
-                model_vocab = pickle.load(open('./bias_data/%s_vocab.pkl' %args.cap_model, 'rb'))
+                model_vocab = pickle.load(open('bias_data/model_vocab/%s_vocab.pkl' %args.cap_model, 'rb'))
                 print('len(model_vocab):', len(model_vocab))
 
             for cap_ind in range(5):
                 if args.mask_gender_words:
-                    with open('/bias-vl/train.csv', 'w') as f:
+                    with open('bias_data/train.csv', 'w') as f:
                         writer = csv.writer(f)
                         for i, entry in enumerate(d_train):
                             if entry['bb_gender'] == 'Male':
@@ -434,7 +433,7 @@ def main(args):
 
                             writer.writerow([new_sent.strip(), gender, entry['img_id']])
 
-                    with open('/bias-vl/test.csv', 'w') as f:
+                    with open('bias_data/test.csv', 'w') as f:
                         writer = csv.writer(f)
                         for i, entry in enumerate(d_test):
                             if entry['bb_gender'] == 'Male':
@@ -475,7 +474,7 @@ def main(args):
                     ('imid', IMID)
                     ]
 
-                train_data, test_data = torchtext.legacy.data.TabularDataset.splits(path='/bias-vl/',train='train.csv', test='test.csv',
+                train_data, test_data = torchtext.legacy.data.TabularDataset.splits(path='bias_data/',train='train.csv', test='test.csv',
                                                                             format='csv', fields=train_val_fields)
 
                 MAX_VOCAB_SIZE = 25000
@@ -569,7 +568,7 @@ def main(args):
             #!!! for qualitative !!!
             flag_imid_ = 0
             if args.mask_gender_words:
-                with open('/bias-vl/train.csv', 'w') as f:
+                with open('bias_data/train.csv', 'w') as f:
                     writer = csv.writer(f)
                     for i, entry in enumerate(d_train):
                         if entry['bb_gender'] == 'Male':
@@ -589,7 +588,7 @@ def main(args):
 
                         writer.writerow([new_sent.strip(), gender, entry['img_id']])
 
-                with open('/bias-vl/test.csv', 'w') as f:
+                with open('bias_data/test.csv', 'w') as f:
                     writer = csv.writer(f)
                     test_imid_list = []
                     for i, entry in enumerate(d_test):
@@ -640,7 +639,7 @@ def main(args):
             ('imid', IMID)
         ]
 
-        train_data, test_data = torchtext.legacy.data.TabularDataset.splits(path='/bias-vl/',train='train.csv', test='test.csv',
+        train_data, test_data = torchtext.legacy.data.TabularDataset.splits(path='bias_data/',train='train.csv', test='test.csv',
                                                                             format='csv', fields=train_val_fields)
 
         #ex = train_data[1]

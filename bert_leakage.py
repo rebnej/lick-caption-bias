@@ -296,7 +296,8 @@ def main(args):
     if n_gpu > 0:
         torch.cuda.manual_seed_all(args.seed)
 
-    gender_obj_cap_mw_entries = pickle.load(open('bias_data/gender_obj_cap_mw_entries.pkl', 'rb'))
+    #gender_obj_cap_mw_entries = pickle.load(open('bias_data/gender_obj_cap_mw_entries.pkl', 'rb'))
+
     #Select captioning model
     if args.cap_model == 'nic':
         selected_cap_gender_entries = pickle.load(open('bias_data/Show-Tell/gender_val_st10_cap_mw_entries.pkl', 'rb'))

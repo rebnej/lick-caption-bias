@@ -348,8 +348,6 @@ def main(args):
     if n_gpu > 0:
         torch.cuda.manual_seed_all(args.seed)
 
-    race_val_obj_cap_entries = pickle.load(open('bias_data/race_val_obj_cap_entries.pkl', 'rb'))
-
     #Select captioning model
     if args.cap_model == 'nic':
         selected_cap_race_entries = pickle.load(open('bias_data/Show-Tell/race_val_st10_cap_entries.pkl', 'rb'))
@@ -421,8 +419,8 @@ def main(args):
             avg_score = sum(score_list) / len(score_list)
             print('########### Reluts ##########')
             print(f"\t Avg score: {avg_score*100:.2f}%")
-            print(f'\t Light. Acc: {light_avg_acc*100:.2f}%')
-            print(f'\t Dark. Acc: {dark_avg_acc*100:.2f}%')
+            #print(f'\t Light. Acc: {light_avg_acc*100:.2f}%')
+            #print(f'\t Dark. Acc: {dark_avg_acc*100:.2f}%')
             print('#############################')
 
 
@@ -448,8 +446,8 @@ def main(args):
 
             print('########### Reluts ##########')
             print(f'\t Avg score: {avg_score*100:.2f}%')
-            print(f'\t Light. Acc: {val_light_acc*100:.2f}%')
-            print(f'\t Dark. Acc: {val_dark_acc*100:.2f}%')
+            #print(f'\t Light. Acc: {val_light_acc*100:.2f}%')
+            #print(f'\t Dark. Acc: {val_dark_acc*100:.2f}%')
             print('#############################')
 
 

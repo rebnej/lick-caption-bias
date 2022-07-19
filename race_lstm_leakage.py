@@ -6,7 +6,6 @@ import re
 from torchtext.legacy import data
 import pickle
 import random
-import csv
 from nltk import word_tokenize
 import nltk
 nltk.download('punkt')
@@ -31,7 +30,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import average_precision_score
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import accuracy_score
-#nltk.download('all')
 
 
 def get_parser():
@@ -276,115 +274,17 @@ def evaluate(model, iterator, criterion, batch_size):
         light_acc, dark_acc = None, None
 
 
-    #return epoch_loss / len(iterator), epoch_acc / len(iterator), total_score / (batch_size * len(iterator)), light_acc, dark_acc
     return epoch_loss / len(iterator), epoch_acc / len(iterator), total_score / cnt_data, light_acc, dark_acc
 
 
 
-def grad_cam(model, iterator, topk_grad_words, batch_size, TEXT, args, cap_ind=0):
-    mask_pad = False
-
-    m = nn.Sigmoid()
-
-    model = model.train()
-
-    male_pred_cnt, female_pred_cnt = 0, 0
-    male_topk_words, female_topk_words = {}, {}
-    gender_words_score, male_words_score, female_words_score = {}, {}, {}
-    grad_entries = []
-    for batch_ind, batch in enumerate(iterator):
-
-        #model.train()
-        text, text_lengths = batch.prediction
-        #if batch_ind == 0:
-        #    print(text.shape, text)
-        #    print(text_lengths, text_lengths.shape) #[batch]
-        #    print(batch.label.shape, batch.label) #[batch]
-        #    print(batch.imid.shape, batch.imid)
-
-        predictions, emb = model(text, text_lengths)
-        predictions = predictions.squeeze(1)
-        #if batch_ind == 0:
-        #    print(predictions.shape, predictions) #[batch, 1]
-
-        probs = m(predictions).cpu() #[batch]
-        pred_races = (probs >= 0.5000).int()
-
-        word_grad = torch.autograd.grad(predictions.sum(), emb, create_graph=True)[0]
-        #print(word_grad.shape) #[seq len, batch, emb dim]
-
-        word_grad_cam = word_grad.sum(2)
-        word_grad_cam = word_grad_cam.transpose(1, 0)
-        if mask_pad:
-            for k in range(word_grad_cam.size(0)):
-                if word_grad_cam.size(1) == text_lengths[k]:
-                    continue
-                else:
-                    word_grad_cam[k, text_lengths[k]] = 0.0
-        #print(word_grad_cam.shape) #[batch, seq len]
-        word_grad_cam = word_grad_cam.abs()
-        ###word_grad_cam = F.softmax(word_grad_cam,dim=1)
-
-        ### Make entries of gradient ###
-        for i in range(text.size(1)):
-            sent_ind = text[:, i]
-            sent_word_grad = word_grad_cam[i, :]
-            imid = batch.imid[i].item()
-
-            dark_score = probs[i].detach().cpu().item()
-            light_score = 1 - dark_score
-
-            gt = batch.label[i].item()
-
-            sent_list = []
-            grad_list = []
-            for ind, word_grad in zip(sent_ind, sent_word_grad):
-                word = TEXT.vocab.itos[ind]
-                word_grad = word_grad.detach().cpu().item()
-                grad_list.append(word_grad)
-                sent_list.append(word)
-            sent = ' '.join([c for c in sent_list])
-
-            if args.calc_ann_leak:
-                grad_entries.append({'sent':sent, 'img_id':imid, 'word_list':sent_list, 'grad_list':grad_list, 'gt':gt,
-                                    'light_score':light_score, 'dark_score':dark_score, 'cap_ind': cap_ind})
-            else:
-                grad_entries.append({'sent':sent, 'img_id':imid, 'word_list':sent_list, 'grad_list':grad_list, 'gt':gt,
-                                    'light_score':light_score, 'dark_score':dark_score})
-
-
-    if args.calc_model_leak:
-        file_name = 'race_%s_seed%s_grad_entries.pkl' %(args.cap_model, args.seed)
-        save_path = os.path.join('/bias-vl/LSTM', args.cap_model, file_name )
-        pickle.dump(grad_entries, open(save_path, 'wb'))
-    elif args.calc_ann_leak and args.align_vocab:
-        file_name = 'race_ann_cap%s_seed%s_grad_entries.pkl' %(cap_ind, args.seed)
-        save_path = os.path.join('/bias-vl/LSTM', args.cap_model, file_name)
-        pickle.dump(grad_entries, open(save_path, 'wb'))
-    elif args.calc_ann_leak:
-        file_name = 'race_ann_cap%s_seed%s_grad_entries.pkl' %(cap_ind, args.seed)
-        save_path = os.path.join('/bias-vl/LSTM', file_name)
-        pickle.dump(grad_entries, open(save_path, 'wb'))
-
-
-
-
-
-def epoch_time(start_time, end_time):
-    elapsed_time = end_time - start_time
-    elapsed_mins = int(elapsed_time / 60)
-    elapsed_secs = int(elapsed_time - (elapsed_mins * 60))
-    return elapsed_mins, elapsed_secs
-
-
-
 def main(args):
-    if os.path.exists('/bias-vl/race_train.csv'):
-        os.remove('/bias-vl/race_train.csv')
-    if os.path.exists('/bias-vl/race_val.csv'):
-        os.remove('/bias-vl/race_val.csv')
-    if os.path.exists('/bias-vl/race_test.csv'):
-        os.remove('/bias-vl/race_test.csv')
+    if os.path.exists('bias_data/race_train.csv'):
+        os.remove('bias_data/race_train.csv')
+    if os.path.exists('bias_data/race_val.csv'):
+        os.remove('bias_data/race_val.csv')
+    if os.path.exists('bias_data/race_test.csv'):
+        os.remove('bias_data/race_test.csv')
 
     torch.backends.cudnn.deterministic = True
     random.seed(args.seed)
@@ -401,7 +301,6 @@ def main(args):
 
     LABEL = data.LabelField(dtype = torch.float)
 
-    race_val_obj_cap_entries = pickle.load(open('bias_data/race_val_obj_cap_entries.pkl', 'rb'))
     #Select captioning model
     if args.cap_model == 'nic':
         selected_cap_race_entries = pickle.load(open('bias_data/Show-Tell/race_val_st10_cap_entries.pkl', 'rb'))
@@ -449,11 +348,11 @@ def main(args):
             rand_score_list = []
             
             if args.align_vocab:
-                model_vocab = pickle.load(open('./bias_data/%s_vocab.pkl' %args.cap_model, 'rb'))
+                model_vocab = pickle.load(open('./bias_data/model_vocab/%s_vocab.pkl' %args.cap_model, 'rb'))
                 print('len(model_vocab):', len(model_vocab))
 
             for cap_ind in range(5):
-                with open('/bias-vl/race_train.csv', 'w') as f:
+                with open('bias_data/race_train.csv', 'w') as f:
                     writer = csv.writer(f)
                     for i, entry in enumerate(d_train):
                         if entry['bb_skin'] == 'Light':
@@ -479,7 +378,7 @@ def main(args):
 
                         writer.writerow([new_sent.strip(), race, entry['img_id']])
 
-                with open('/bias-vl/race_test.csv', 'w') as f:
+                with open('bias_data/race_test.csv', 'w') as f:
                     writer = csv.writer(f)
                     for i, entry in enumerate(d_test):
                         if entry['bb_skin'] == 'Light':
@@ -516,7 +415,7 @@ def main(args):
                     ('imid', IMID) 
                     ]
 
-                train_data, test_data = torchtext.legacy.data.TabularDataset.splits(path='/bias-vl/',train='race_train.csv', test='race_test.csv',
+                train_data, test_data = torchtext.legacy.data.TabularDataset.splits(path='bias_data/',train='race_train.csv', test='race_test.csv',
                                                                             format='csv', fields=train_val_fields)
 
                 MAX_VOCAB_SIZE = 25000
@@ -575,13 +474,7 @@ def main(args):
 
                 for epoch in range(N_EPOCHS):
 
-                    start_time = time.time()
-
                     train_loss, train_acc, train_proc = train(model, train_iterator, optimizer, criterion, train_proc)
-
-                    end_time = time.time()
-
-                    epoch_mins, epoch_secs = epoch_time(start_time, end_time)
 
                 valid_loss, valid_acc, avg_score, light_acc, dark_acc = evaluate(model, test_iterator, criterion, args.batch_size)
                 val_acc_list.append(valid_acc)
@@ -590,9 +483,6 @@ def main(args):
                 score_list.append(avg_score)
                 #print(f'\tTrain Loss: {train_loss:.3f} | Train Acc: {train_acc*100:.2f}%')
                 #print(f'\t Val. Loss: {valid_loss:.3f} |  Val. Acc: {valid_acc*100:.2f}%')
-
-                if args.grad_cam:
-                    grad_cam(model, test_iterator, args.topk_grad_words, args.batch_size, TEXT, args, cap_ind=cap_ind)
 
             dark_avg_acc = sum(dark_acc_list) / len(dark_acc_list)
             light_avg_acc = sum(light_acc_list) / len(light_acc_list)
@@ -614,7 +504,7 @@ def main(args):
             print('--- task is Captioning ---')
             d_train, d_test = make_train_test_split(args, selected_cap_race_entries)
 
-            with open('/bias-vl/race_train.csv', 'w') as f:
+            with open('bias_data/race_train.csv', 'w') as f:
                 writer = csv.writer(f)
                 for i, entry in enumerate(d_train):
                     if entry['bb_skin'] == 'Light':
@@ -634,7 +524,7 @@ def main(args):
 
                     writer.writerow([new_sent.strip(), race, entry['img_id']])
 
-            with open('/bias-vl/race_test.csv', 'w') as f:
+            with open('bias_data/race_test.csv', 'w') as f:
                 writer = csv.writer(f)
                 for i, entry in enumerate(d_test):
                     if entry['bb_skin'] == 'Light':
@@ -681,7 +571,7 @@ def main(args):
             ('imid', IMID)
         ]
 
-        train_data, test_data = torchtext.legacy.data.TabularDataset.splits(path='/bias-vl/',train='race_train.csv', test='race_test.csv',
+        train_data, test_data = torchtext.legacy.data.TabularDataset.splits(path='bias_data/',train='race_train.csv', test='race_test.csv',
                                                                             format='csv', fields=train_val_fields)
 
         #ex = train_data[1]
@@ -704,8 +594,6 @@ def main(args):
         LABEL.build_vocab(train_data)
         print(f"Unique tokens in TEXT vocabulary: {len(TEXT.vocab)}")
         print(f"Unique tokens in LABEL vocabulary: {len(LABEL.vocab)}")
-        #print(TEXT.vocab.freqs.most_common(20))
-        #print(TEXT.vocab.itos[:10])
         #print(type(TEXT.vocab.itos))
         #print(LABEL.vocab.stoi)
 
@@ -752,13 +640,7 @@ def main(args):
         train_proc = []
         for epoch in range(N_EPOCHS):
 
-            start_time = time.time()
-
             train_loss, train_acc, train_proc = train(model, train_iterator, optimizer, criterion, train_proc)
-
-            end_time = time.time()
-
-            epoch_mins, epoch_secs = epoch_time(start_time, end_time)
 
         valid_loss, valid_acc, avg_score, light_acc, dark_acc = evaluate(model, test_iterator, criterion, args.batch_size)
         print('########## Results ##########')
@@ -767,9 +649,6 @@ def main(args):
         #print(f'\t Dark. Acc: {dark_acc*100:.2f}%')
         print('#############################')
         print()
-
-        if args.grad_cam:
-            grad_cam(model, test_iterator, args.topk_grad_words, args.batch_size, TEXT, args)
 
 
 
