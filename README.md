@@ -36,19 +36,19 @@ We study societal bias amplification in image captioning. Image captioning model
 ## Results
 LIC score for each capptioning model:
 
-|             |         LSTM         |       BERT-ft
-|             | -------------------  | -------------------
-|Model        | LIC_M | LIC_D | LIC  | LIC_M | LIC_D | LIC 
-|-------      |
-|'NIC'          |
-|'SAT'          |
-|FC           |
-|Att2in       |
-|UpDn         |
-|Transformer  |
-|OSCAR        |
-|NIC+         |
-|NIC+Equalizer|
+|             |         LSTM          |       BERT-ft         |
+|             |-----------------------|-----------------------|
+|Model        | LIC_M | LIC_D | LIC   | LIC_M | LIC_D | LIC   |
+|-------------|-------|-------|-------|-------|-------|-------|
+|NIC          |-------|-------|-------|-------|-------|-------|
+|SAT          |-------|-------|-------|-------|-------|-------|
+|FC           |-------|-------|-------|-------|-------|-------|
+|Att2in       |-------|-------|-------|-------|-------|-------|
+|UpDn         |-------|-------|-------|-------|-------|-------|
+|Transformer  |-------|-------|-------|-------|-------|-------|
+|OSCAR        |-------|-------|-------|-------|-------|-------|
+|NIC+         |-------|-------|-------|-------|-------|-------|
+|NIC+Equalizer|-------|-------|-------|-------|-------|-------|
 
 ## Performance
 Task    | t2i | t2i | i2t | i2t | IC  | IC  |  IC  |  IC  | NoCaps | NoCaps |   VQA    |  NLVR2  |   GQA   |
