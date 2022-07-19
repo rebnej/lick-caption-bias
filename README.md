@@ -31,7 +31,7 @@ We study societal bias amplification in image captioning. Image captioning model
     - sh run_gender_bert_ann.sh (human caption, gender)
     - sh run_gender_bert_model.sh (generated caption, gender)
     - sh run_race_bert_ann.sh (human caption, race)
-    - sh run_race_bert_model.sh (generated caption, race)
+    -- sh run_race_bert_model.sh (generated caption, race)
 
 ## Citation
     @inproceedings{hirota2022quantifying,
