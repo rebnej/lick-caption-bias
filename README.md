@@ -23,7 +23,8 @@ This repository contains source code necessary to reproduce the results presente
 
 ## Setup
 1. Clone the repository.
-2. Download the [data](https://drive.google.com/drive/folders/13AUAnpvy_4DoEyh_6DVG1EfJg2b0f6_k?usp=sharing) (folder name: bias_data) and place in the current directory.
+2. Download the [data](https://drive.google.com/drive/folders/1PI03BqcnhdXZi2QY9PUHzWn4cxgdonT-?usp=sharing) (folder name: bias_data) and place in the current directory.
+  The folder contains human/generated captions and corresponding gender/racial annotations from the paper [Understanding and Evaluating Racial Biases in Image Captioning](https://openaccess.thecvf.com/content/ICCV2021/html/Zhao_Understanding_and_Evaluating_Racial_Biases_in_Image_Captioning_ICCV_2021_paper.html).
 3. Install dependancies:
   ### For LSTM classifier
     - Python 3.7
