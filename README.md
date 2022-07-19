@@ -1,8 +1,22 @@
 # Quantifying Societal Bias Amplification in Image Captioning
 This repository contains source code necessary to reproduce the results presented in the paper [Quantifying Societal Bias Amplification in Image Captioning](https://openaccess.thecvf.com/content/CVPR2022/html/Hirota_Quantifying_Societal_Bias_Amplification_in_Image_Captioning_CVPR_2022_paper.html) (CVPR 2022, Oral). Please check the project website [here](https://sites.google.com/view/cvpr-2022-quantify-bias/home).
+
 ## Introduction
-We study societal bias amplification in image captioning. Image captioning models have been shown to perpetuate gender and racial biases, however, metrics to measure, quantify, and evaluate the societal bias in captions are not yet standardized. We provide a comprehensive study on the strengths and limitations of each metric, and propose LIC, a metric to study captioning bias amplification. We argue that, for image captioning, it is not enough to focus on the correct prediction of the protected attribute, and the whole context should be taken into account. We conduct extensive evaluation on traditional and state-of-the-art image captioning models, and surprisingly find that, by only focusing on the protected attribute prediction, bias mitigation models are unexpectedly amplifying bias.
-(add a picture)
+We study societal bias amplification in image captioning. We propose LIC, a metric to study captioning bias amplification.
+
+<div align="center">
+<img src="run_scripts/LIC_train.png" width="800pix"/>
+</div>
+
+The classifier is trained to predict the attributes of the person in the image.
+Attribute-revealing words are masked before being fed into the classifier.
+
+<div align="center">
+<img src="run_scripts/LIC_classifier.png" width="800pix"/>
+</div>
+
+To compute bias amplification, compare the accuracies of the 2 classifiers. 
+
 
 ## Setup
 1. Clone the repository.
@@ -24,7 +38,9 @@ We study societal bias amplification in image captioning. Image captioning model
     - sklearn
     
 ## Evaluation
-(add an explanation of what is doing here)
+1. train the classifier on human/generated captions. 
+2. calculate LIC on human/generated captions.
+
   ### For LSTM classifier
     For training the classifier and calculating LIC on human captions in terms of gender bias.   
     - sh run_gender_lstm_ann.sh 
