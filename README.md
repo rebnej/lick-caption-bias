@@ -34,10 +34,12 @@ We study societal bias amplification in image captioning. Image captioning model
     - sh run_race_bert_model.sh (generated caption, race)
     
 ## Results
+
 ### Gender bias
 <div align="center">
-<img src="run_scripts/LIC_gender.png" width="900pix"/>
+<img src="run_scripts/LIC_gender.png" width="800pix"/>
 </div>
+
 ### Racial bias
 <div align="center">
 <img src="run_scripts/LIC_race.png" width="800pix"/>
