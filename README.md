@@ -22,7 +22,7 @@ To compute bias amplification, compare the accuracies of the 2 classifiers.
 ## Setup
 1. Clone the repository.
 2. Download the [data](https://drive.google.com/drive/folders/1PI03BqcnhdXZi2QY9PUHzWn4cxgdonT-?usp=sharing) (folder name: bias_data) and place in the current directory.
-  The folder contains human/generated captions and corresponding gender/racial annotations from ["Understanding and Evaluating Racial Biases in Image Captioning](https://openaccess.thecvf.com/content/ICCV2021/html/Zhao_Understanding_and_Evaluating_Racial_Biases_in_Image_Captioning_ICCV_2021_paper.html).   
+  The folder contains human/generated captions and corresponding gender/racial annotations from the paper [Understanding and Evaluating Racial Biases in Image Captioning](https://openaccess.thecvf.com/content/ICCV2021/html/Zhao_Understanding_and_Evaluating_Racial_Biases_in_Image_Captioning_ICCV_2021_paper.html).   
 3. Install dependancies:
 
   ### For LSTM classifier
