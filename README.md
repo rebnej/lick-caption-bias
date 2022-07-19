@@ -20,3 +20,11 @@ We study societal bias amplification in image captioning. Image captioning model
     - transformers 4.0.1
     - spacy 2.3
     - sklearn
+## Citation
+    @inproceedings{hirota2022quantifying,
+  title={Quantifying Societal Bias Amplification in Image Captioning},
+  author={Hirota, Yusuke and Nakashima, Yuta and Garcia, Noa},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={13450--13459},
+  year={2022}
+}
