@@ -88,7 +88,7 @@ In the paper, LSTM or BERT is used as the classifier. Please run the following c
 
 **Note**: If you compute LIC in terms of **racial** bias, please run `race_lstm_leakage.py` or `race_bert_leakage.py`.
   
-**Note**: To use pre-trained BERT without fine-tuning, you can add `--freeze_bert True`, `--num_epochs 20`, and `--learning_rate 5e-5` 
+**Note**: To use pre-trained BERT without fine-tuning, you can add `--freeze_bert True`, `--num_epochs 20`, and `--learning_rate 5e-5`. 
   
 
 ## Results
