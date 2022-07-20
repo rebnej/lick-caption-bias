@@ -3,7 +3,7 @@ This repository contains source code necessary to reproduce the results presente
 
 
 <div align="center">
-<img src="run_scripts/LIC_train.png" width="800pix"/>
+<img src="run_scripts/LIC_train.png" width="600pix"/>
 </div>
 
 
@@ -17,7 +17,7 @@ This repository contains source code necessary to reproduce the results presente
 
 
 <div align="center">
-<img src="run_scripts/LIC_classifier.png" width="700pix"/>
+<img src="run_scripts/LIC_classifier.png" width="600pix"/>
 </div>
 
 
@@ -49,19 +49,23 @@ This repository contains source code necessary to reproduce the results presente
     
   Where `$int` is the arbitrary integer for random seed and `$model_name` is the choice of a captioning model to be compared (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`).
 
+
 - To train the **LSTM** classifier on **generated captions** and compute LIC in terms of **gender** bias run:
     
   `python lstm_leakage.py --seed $int --cap_model $model_name --calc_model_leak True`
     
   Where `$model_name` is the choice of a captioning model  (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`). 
   
+
 - To train the **BERT** classifier on **human captions** and compute LIC in terms of **gender** bias run:
     
   `python bert_leakage.py --seed $int --cap_model $model_name --calc_ann_leak True`
     
+
 - To train the **BERT** classifier on **generated captions** and compute LIC in terms of **gender** bias run:
     
   `python bert_leakage.py --seed $int --cap_model $model_name --calc_model_leak True`
+
 
 **Note**: If you compute LIC in terms of **racial** bias, please run `race_lstm_leakage.py` or `race_bert_leakage.py`.
   
