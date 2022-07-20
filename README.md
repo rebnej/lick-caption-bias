@@ -42,6 +42,8 @@ LIC metric measures how much biased a set of model generated captions are with r
     - torchtext 0.10.0 
     - spacy 3.4.0 
     - sklearn 1.0.2 
+    - nltk 3.6.3
+
   ### For BERT classifier
     - Python 3.7
     - numpy 1.21.2 
@@ -49,6 +51,7 @@ LIC metric measures how much biased a set of model generated captions are with r
     - transformers 4.0.1
     - spacy 2.3
     - sklearn 1.0.2 
+    - nltk 3.6.3
     
 ## Compute LIC  
 We evaluate various captioning models (i.e. [NIC](https://arxiv.org/abs/1411.4555), [SAT](https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Image-Captioning), [FC](https://github.com/ruotianluo/self-critical.pytorch), [Att2in](https://github.com/ruotianluo/self-critical.pytorch), [UpDn](https://github.com/ruotianluo/self-critical.pytorch/blob/master/MODEL_ZOO.md), [Transformer](https://github.com/ruotianluo/self-critical.pytorch/blob/master/MODEL_ZOO.md), [OSCAR](https://github.com/microsoft/Oscar), [NIC+](https://github.com/kayburns/women-snowboard), and [NIC+Equalizer](https://github.com/kayburns/women-snowboard)). In the following commands, you can select a model in `$model_name` from them (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`).

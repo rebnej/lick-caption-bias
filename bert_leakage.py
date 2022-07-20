@@ -1,9 +1,7 @@
-#import torchtext
 import torch
 import csv
 import spacy
 import re
-#from torchtext.legacy import data
 import pickle
 import random
 import csv
@@ -16,14 +14,12 @@ import argparse
 import os
 import pprint
 import numpy as np
-import pylab
 from nltk.tokenize import word_tokenize
 from io import open
 import sys
 import json
 import pickle
 from torch import nn
-#import torch.utils.data as data
 import torch.optim as optim
 import torch.nn.functional as F
 from tqdm import tqdm, trange

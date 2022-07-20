@@ -14,8 +14,6 @@ import argparse
 import numpy as np
 import os
 import pprint
-from pycocotools.coco import COCO
-import pylab
 from nltk.tokenize import word_tokenize
 from io import open
 import sys

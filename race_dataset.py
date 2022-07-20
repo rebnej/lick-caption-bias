@@ -5,8 +5,6 @@ import numpy as np
 import json
 import os
 import pprint
-from pycocotools.coco import COCO
-import pylab
 from nltk.tokenize import word_tokenize
 import random
 from io import open
@@ -37,8 +35,7 @@ class BERT_ANN_leak_data(data.Dataset):
 
         self.align_vocab = args.align_vocab
         if self.align_vocab:
-            ##self.model_vocab = pickle.load(open('/bias-vl/%s_vocab.pkl' %args.cap_model, 'rb'))
-            self.model_vocab = pickle.load(open('./bias_data/%s_vocab.pkl' %args.cap_model, 'rb'))
+            self.model_vocab = pickle.load(open('./bias_data/model_vocab/%s_vocab.pkl' %args.cap_model, 'rb'))
             print('len(self.model_vocab):', len(self.model_vocab))
 
     def __len__(self):
