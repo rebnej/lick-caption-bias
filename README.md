@@ -4,6 +4,16 @@ This repository contains source code necessary to reproduce the results presente
 ## LIC metric
 LIC metric measures how much biased a set of model generated captions are with respect to the captions in the training dataset. LIC is computer as follows:
 
+1. Mask attribute-revealing words. 
+    
+2. Train 2 classifiers on human/generated captions to predict the attributes of the person in the image.
+3. Calculate LIC scores for each classifier. 
+4. To compute bias amplification, take the difference of the LIC socres between 2 classifiers.
+
+
+<div align="center">
+<img src="run_scripts/LIC_classifier.png" width="600pix"/>
+</div>
 
 
 ## Setup
