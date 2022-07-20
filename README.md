@@ -59,7 +59,7 @@ LIC metric measures how much biased a set of model generated captions are with r
 
 - To train the **LSTM** classifier on **human captions** and compute LIC in terms of **gender** bias run:
     
-  `python lstm_leakage.py --seed $int --cap_model $model_name --calc_ann_leak True`
+  `python3 lstm_leakage.py --seed $int --cap_model $model_name --calc_ann_leak True`
     
   Where `$int` is the arbitrary integer for random seed and `$model_name` is the choice of a captioning model to be compared (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`).
 
@@ -67,7 +67,7 @@ LIC metric measures how much biased a set of model generated captions are with r
 
 - To train the **LSTM** classifier on **generated captions** and compute LIC in terms of **gender** bias run:
     
-  `python lstm_leakage.py --seed $int --cap_model $model_name --calc_model_leak True`
+  `python3 lstm_leakage.py --seed $int --cap_model $model_name --calc_model_leak True`
     
   Where `$model_name` is the choice of a captioning model  (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`). 
   
@@ -75,13 +75,13 @@ LIC metric measures how much biased a set of model generated captions are with r
 
 - To train the **BERT** classifier on **human captions** and compute LIC in terms of **gender** bias run:
     
-  `python bert_leakage.py --seed $int --cap_model $model_name --calc_ann_leak True`
+  `python3 bert_leakage.py --seed $int --cap_model $model_name --calc_ann_leak True`
     
 </br>
 
 - To train the **BERT** classifier on **generated captions** and compute LIC in terms of **gender** bias run:
     
-  `python bert_leakage.py --seed $int --cap_model $model_name --calc_model_leak True`
+  `python3 bert_leakage.py --seed $int --cap_model $model_name --calc_model_leak True`
 
 <br/>
 
