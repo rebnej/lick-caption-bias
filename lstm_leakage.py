@@ -45,7 +45,7 @@ def get_parser():
     parser.add_argument("--save_preds", default=False, type=bool)
     parser.add_argument("--use_glove", default=False, type=bool)
     parser.add_argument("--save_model_vocab", default=False, type=bool)
-    parser.add_argument("--align_vocab", default=False, type=bool)
+    parser.add_argument("--align_vocab", default=True, type=bool)
     parser.add_argument("--mask_bias_source", default='', type=str, help='obj or person or both or none')
 
     parser.add_argument("--batch_size", default=64, type=int)

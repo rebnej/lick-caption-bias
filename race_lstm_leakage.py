@@ -46,7 +46,7 @@ def get_parser():
     parser.add_argument("--mask_race_words", default=False, type=bool)
     parser.add_argument("--use_glove", default=False, type=bool)
     parser.add_argument("--save_model_vocab", default=False, type=bool)
-    parser.add_argument("--align_vocab", default=False, type=bool)
+    parser.add_argument("--align_vocab", default=True, type=bool)
     parser.add_argument("--grad_cam", default=False, type=bool)
 
     parser.add_argument("--batch_size", default=64, type=int)

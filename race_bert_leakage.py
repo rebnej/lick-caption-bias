@@ -63,7 +63,7 @@ def get_parser():
     parser.add_argument("--store_topk_race_pred", default=False, type=bool)
     parser.add_argument("--topk_race_pred", default=50, type=int)
     parser.add_argument("--calc_score", default=True, type=bool)
-    parser.add_argument("--align_vocab", default=False, type=bool)
+    parser.add_argument("--align_vocab", default=True, type=bool)
 
     parser.add_argument("--batch_size", default=64, type=int)
     parser.add_argument("--seed", default=0, type=int)
