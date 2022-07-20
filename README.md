@@ -51,12 +51,13 @@ LIC metric measures how much biased a set of model generated captions are with r
     - sklearn 1.0.2 
     
 ## Compute LIC  
+We evaluate various captioning models (i.e. [NIC](https://arxiv.org/abs/1411.4555), [SAT](https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Image-Captioning), [FC](https://github.com/ruotianluo/self-critical.pytorch), [Att2in](https://github.com/ruotianluo/self-critical.pytorch), [UpDn](https://github.com/ruotianluo/self-critical.pytorch/blob/master/MODEL_ZOO.md), [Transformer](https://github.com/ruotianluo/self-critical.pytorch/blob/master/MODEL_ZOO.md), [OSCAR](https://github.com/microsoft/Oscar), [NIC+](https://github.com/kayburns/women-snowboard), and [NIC+Equalizer](https://github.com/kayburns/women-snowboard)). In the following commands, you can select a model in `$model_name` from them (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`).
 
 - To train the **LSTM** classifier on **human captions** and compute LIC in terms of **gender** bias run:
     
   `python3 lstm_leakage.py --seed $int --cap_model $model_name --calc_ann_leak True`
     
-  Where `$int` is the arbitrary integer for random seed and `$model_name` is the choice of a captioning model to be compared (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`).
+  Where `$int` is the arbitrary integer for random seed and `$model_name` is the choice of a captioning model to be compared.
 
 </br>
 
@@ -64,7 +65,7 @@ LIC metric measures how much biased a set of model generated captions are with r
     
   `python3 lstm_leakage.py --seed $int --cap_model $model_name --calc_model_leak True`
     
-  Where `$model_name` is the choice of a captioning model  (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`). 
+  Where `$model_name` is the choice of a captioning model. 
   
 </br>
 
@@ -82,7 +83,7 @@ LIC metric measures how much biased a set of model generated captions are with r
 
 **Note**: If you compute LIC in terms of **racial** bias, please run `race_lstm_leakage.py` or `race_bert_leakage.py`.
   
-**Note**: To avoid updating BERT parameters, you can add `--freeze_bert True`, `--num_epochs 20`, and `--learning_rate 5e-5` 
+**Note**: To use pre-trained BERT without fine-tuning, you can add `--freeze_bert True`, `--num_epochs 20`, and `--learning_rate 5e-5` 
   
 
 ## Results
