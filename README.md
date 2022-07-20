@@ -44,25 +44,25 @@ To compute bias amplification, compare the accuracies of the 2 classifiers.
 1. train the classifier on human/generated captions. 
 2. calculate LIC on human/generated captions.
 
-  - To train the **LSTM** classifier on **human captions** and compute LIC in terms of **gender** bias run:
+- To train the **LSTM** classifier on **human captions** and compute LIC in terms of **gender** bias run:
     
-    `python lstm_leakage.py --seed $int --cap_model $model_name --calc_ann_leak True`
+  `python lstm_leakage.py --seed $int --cap_model $model_name --calc_ann_leak True`
     
   Where `$int` is the arbitrary integer for random seed and `$model_name` is the choice of a captioning model to be compared (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`).
 
-  - To train the **LSTM** classifier on **generated captions** and compute LIC in terms of **gender** bias run:
+- To train the **LSTM** classifier on **generated captions** and compute LIC in terms of **gender** bias run:
     
-    `python lstm_leakage.py --seed $int --cap_model $model_name --calc_model_leak True`
+  `python lstm_leakage.py --seed $int --cap_model $model_name --calc_model_leak True`
     
   Where `$model_name` is the choice of a captioning model  (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`). 
   
-  - To train the **BERT** classifier on **human captions** and compute LIC in terms of **gender** bias run:
+- To train the **BERT** classifier on **human captions** and compute LIC in terms of **gender** bias run:
     
-    `python bert_leakage.py --seed $int --cap_model $model_name --calc_ann_leak True`
+  `python bert_leakage.py --seed $int --cap_model $model_name --calc_ann_leak True`
     
-  - To train the **BERT** classifier on **generated captions** and compute LIC in terms of **gender** bias run:
+- To train the **BERT** classifier on **generated captions** and compute LIC in terms of **gender** bias run:
     
-    `python bert_leakage.py --seed $int --cap_model $model_name --calc_model_leak True`
+  `python bert_leakage.py --seed $int --cap_model $model_name --calc_model_leak True`
 
 **Note**: If you compute LIC in terms of **racial** bias, please run `race_lstm_leakage.py` or `race_bert_leakage.py`.
   
