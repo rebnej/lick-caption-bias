@@ -3,7 +3,7 @@ This repository contains source code necessary to reproduce the results presente
 
 
 <div align="center">
-<img src="run_scripts/LIC_train.png" width="650pix"/>
+<img src="run_scripts/LIC_test.png" width="650pix"/>
 </div>
 
 
@@ -28,11 +28,6 @@ LIC metric measures how much biased a set of model generated captions are with r
 
 4. To compute bias amplification, take the difference of the LIC socres between 2 classifiers.
 
-
-
-<div align="center">
-<img src="run_scripts/LIC_classifier.png" width="600pix"/>
-</div>
 
 
 ## Setup
