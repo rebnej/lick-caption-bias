@@ -42,18 +42,18 @@ LIC metric measures how much biased a set of model generated captions are with r
 3. Install dependancies:
   ### For LSTM classifier
     - Python 3.7
-    - numpy 
+    - numpy 1.21.2 
     - pytorch 1.9
     - torchtext 0.10.0 
-    - spacy 
-    - sklearn 
+    - spacy 3.4.0 
+    - sklearn 1.0.2 
   ### For BERT classifier
     - Python 3.7
-    - numpy
+    - numpy 1.21.2 
     - pytorch 1.4
     - transformers 4.0.1
     - spacy 2.3
-    - sklearn
+    - sklearn 1.0.2 
     
 ## Compute LIC  
 
