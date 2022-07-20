@@ -57,7 +57,7 @@ This repository contains source code necessary to reproduce the results presente
     
   Where `$model_name` is the choice of a captioning model  (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`). 
   
-<br/>
+<br>
 
 - To train the **BERT** classifier on **human captions** and compute LIC in terms of **gender** bias run:
     
