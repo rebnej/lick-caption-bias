@@ -15,7 +15,7 @@ LIC metric measures how much biased a set of model generated captions are with r
 1. Mask attribute-revealing words. 
     
 <div align="center">
-<img src="run_scripts/mask.png" width="500pix"/>
+<img src="run_scripts/mask.png" width="400pix"/>
 </div>
 
 2. Train 2 classifiers, 1 for human captions and 1 for generated captions, with attribute labels. The classifiers' goal is to predict the attribute (e.g. gender, race) for the person in the image **using only the captions**.
