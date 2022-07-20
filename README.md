@@ -1,10 +1,3 @@
-<style type="text/css">
-<!--
-.orange {background-color:#ffcc99;}
-.violet {background-color:#6633cc; color:#ffffff;}
--->
-</style>
-
 # Quantifying Societal Bias Amplification in Image Captioning
 This repository contains source code necessary to reproduce the results presented in the paper [Quantifying Societal Bias Amplification in Image Captioning](https://openaccess.thecvf.com/content/CVPR2022/html/Hirota_Quantifying_Societal_Bias_Amplification_in_Image_Captioning_CVPR_2022_paper.html) (CVPR 2022, Oral). Please check the project website [here](https://sites.google.com/view/cvpr-2022-quantify-bias/home).
 
@@ -18,7 +11,7 @@ LIC metric measures how much biased a set of model generated captions are with r
 3. Calculate LIC scores for each classifier. 
 4. To compute bias amplification, take the difference of the LIC socres between 2 classifiers.
 
-ホームページ作成は<span class="orange">簡単</span>！スタイルシートでデザインが <span class="violet">自由自在</span>です。
+文字に<span class="orange">背景色</span>をつける。
 
 <div align="center">
 <img src="run_scripts/LIC_classifier.png" width="600pix"/>
