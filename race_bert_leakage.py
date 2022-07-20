@@ -56,8 +56,6 @@ def get_parser():
     parser.add_argument("--calc_race_acc", default=True, type=bool)
     parser.add_argument("--test_ratio", default=0.1, type=float)
     parser.add_argument("--balanced_data", default=True, type=bool)
-    parser.add_argument("--topk_ans", default='top2', type=str, help='topk answers of VQA model(top1-5, and balanced with avg #answers(2.1))')
-    parser.add_argument("--only_ans", default=True, type=bool)
     parser.add_argument("--mask_race_words", default=False, type=bool)
     parser.add_argument("--freeze_bert", default=False, type=bool)
     parser.add_argument("--store_topk_race_pred", default=False, type=bool)
@@ -67,7 +65,7 @@ def get_parser():
 
     parser.add_argument("--batch_size", default=64, type=int)
     parser.add_argument("--seed", default=0, type=int)
-    parser.add_argument("--num_epochs", default=0, type=int)
+    parser.add_argument("--num_epochs", default=5, type=int)
     parser.add_argument("--learning_rate", default=1e-5, type=float)
     parser.add_argument("--optimizer", default='adamw', type=str, help="adamw or adam")
     parser.add_argument("--adam_correct_bias", default=True, type=bool)
@@ -348,6 +346,8 @@ def main(args):
     if n_gpu > 0:
         torch.cuda.manual_seed_all(args.seed)
 
+    race_val_obj_cap_entries = pickle.load(open('bias_data/Human_Ann/race_val_obj_cap_entries.pkl', 'rb')) # Human captions
+
     #Select captioning model
     if args.cap_model == 'nic':
         selected_cap_race_entries = pickle.load(open('bias_data/Show-Tell/race_val_st10_cap_entries.pkl', 'rb'))
@@ -382,9 +382,9 @@ def main(args):
 
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
-    ##################### ANN Leakage #######################
+    ##################### ANN LIC score #######################
     if args.calc_ann_leak:
-        print('--- calc ANN Leakage ---')
+        print('--- calc ANN LIC score ---')
         ## Captioning ##
         if args.task == 'captioning':
             print('-- Task is Captioning --')
@@ -418,15 +418,15 @@ def main(args):
             light_avg_acc = sum(light_acc_list) / len(light_acc_list)
             avg_score = sum(score_list) / len(score_list)
             print('########### Reluts ##########')
-            print(f"\t Avg score: {avg_score*100:.2f}%")
+            print(f"LIC score (LIC_D): {avg_score*100:.2f}%")
             #print(f'\t Light. Acc: {light_avg_acc*100:.2f}%')
             #print(f'\t Dark. Acc: {dark_avg_acc*100:.2f}%')
             print('#############################')
 
 
-    ##################### MODEL Leakage #######################
+    ##################### MODEL LIC score #######################
     if args.calc_model_leak:
-        print('--- calc MODEL Leakage ---')
+        print('--- calc MODEL LIC score ---')
         ## Captioning ##
         if args.task == 'captioning':
             print('-- Task is Captioning --')
@@ -445,7 +445,7 @@ def main(args):
             val_acc, val_loss, val_light_acc, val_dark_acc, avg_score = calc_leak(args, model, train_dataloader, test_dataloader)
 
             print('########### Reluts ##########')
-            print(f'\t Avg score: {avg_score*100:.2f}%')
+            print(f'LIC score (LIC_M): {avg_score*100:.2f}%')
             #print(f'\t Light. Acc: {val_light_acc*100:.2f}%')
             #print(f'\t Dark. Acc: {val_dark_acc*100:.2f}%')
             print('#############################')

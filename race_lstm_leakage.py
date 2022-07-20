@@ -301,6 +301,8 @@ def main(args):
 
     LABEL = data.LabelField(dtype = torch.float)
 
+    race_val_obj_cap_entries = pickle.load(open('bias_data/Human_Ann/race_val_obj_cap_entries.pkl', 'rb')) # Human captions
+
     #Select captioning model
     if args.cap_model == 'nic':
         selected_cap_race_entries = pickle.load(open('bias_data/Show-Tell/race_val_st10_cap_entries.pkl', 'rb'))
@@ -334,9 +336,9 @@ def main(args):
         race_words = []
 
 
-##################### ANN Leakage #######################
+##################### ANN LIC score #######################
     if args.calc_ann_leak:
-        print('--- calc ANN Leakage ---')
+        print('--- calc ANN LIC score ---')
         ## Captioning ##
         if args.task == 'captioning':
             print('-- task is Captioning --')
@@ -373,7 +375,7 @@ def main(args):
                                 new_list.append(t)
 
                         new_sent = ' '.join([c for c in new_list])
-                        if i <= 10 and cap_ind == 0 and args.seed == 0:
+                        if i <= 5 and cap_ind == 0 and args.seed == 0:
                             print(new_sent)
 
                         writer.writerow([new_sent.strip(), race, entry['img_id']])
@@ -489,16 +491,16 @@ def main(args):
             avg_score = sum(score_list) / len(score_list)
 
             print('########## Results ##########')
-            print(f"\t Avg score: {avg_score*100:.2f}%")
+            print(f"LIC score (LIC_D): {avg_score*100:.2f}%")
             #print(f"\t Dark Accuracy: {dark_avg_acc*100:.2f}%")
             #print(f"\t Light Accuracy: {light_avg_acc*100:.2f}%")
             print('#############################')
 
 
 
-####################### MODEL Leakage ##########################
+####################### MODEL LIC score ##########################
     if args.calc_model_leak:
-        print('--- calc MODEL Leakage ---')
+        print('--- calc MODEL LIC score ---')
         ## Captioning ##
         if args.task == 'captioning':
             print('--- task is Captioning ---')
@@ -519,7 +521,7 @@ def main(args):
                         else:
                             new_list.append(t)      
                     new_sent = ' '.join([c for c in new_list])
-                    if i <= 10 and args.seed == 0:
+                    if i <= 5 and args.seed == 0:
                         print(new_sent)
 
                     writer.writerow([new_sent.strip(), race, entry['img_id']])
@@ -644,7 +646,7 @@ def main(args):
 
         valid_loss, valid_acc, avg_score, light_acc, dark_acc = evaluate(model, test_iterator, criterion, args.batch_size)
         print('########## Results ##########')
-        print(f'\t Avg score: {avg_score*100:.2f}%')
+        print(f'LIC score (LIC_M): {avg_score*100:.2f}%')
         #print(f'\t Light. Acc: {light_acc*100:.2f}%')
         #print(f'\t Dark. Acc: {dark_acc*100:.2f}%')
         print('#############################')

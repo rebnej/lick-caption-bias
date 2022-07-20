@@ -65,7 +65,7 @@ def get_parser():
 
     parser.add_argument("--batch_size", default=64, type=int)
     parser.add_argument("--seed", default=0, type=int)
-    parser.add_argument("--num_epochs", default=0, type=int)
+    parser.add_argument("--num_epochs", default=5, type=int)
     parser.add_argument("--learning_rate", default=1e-5, type=float)
     parser.add_argument("--optimizer", default='adamw', type=str, help="adamw or adam")
     parser.add_argument("--adam_correct_bias", default=True, type=bool)
@@ -296,7 +296,7 @@ def main(args):
     if n_gpu > 0:
         torch.cuda.manual_seed_all(args.seed)
 
-    #gender_obj_cap_mw_entries = pickle.load(open('bias_data/gender_obj_cap_mw_entries.pkl', 'rb'))
+    gender_obj_cap_mw_entries = pickle.load(open('bias_data/Human_Ann/gender_obj_cap_mw_entries.pkl', 'rb')) # Human captions
 
     #Select captioning model
     if args.cap_model == 'nic':
@@ -327,9 +327,9 @@ def main(args):
 
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
-    ##################### ANN Leakage #######################
+    ##################### ANN LIC score #######################
     if args.calc_ann_leak:
-        print('--- calc ANN Leakage ---')
+        print('--- calc ANN LIC score ---')
         ## Captioning ##
         if args.task == 'captioning':
             print('-- Task is Captioning --')
@@ -363,16 +363,16 @@ def main(args):
             male_avg_acc = sum(male_acc_list) / len(male_acc_list)
             avg_score = sum(score_list) / len(score_list)
             print('########### Reluts ##########')
-            print(f"\t Avg score: {avg_score*100:.2f}%")
+            print(f"LIC score (LIC_D): {avg_score*100:.2f}%")
             #print(f"\t Female Accuracy: {female_avg_acc*100:.2f}%")
             #print(f"\t Male Accuracy: {male_avg_acc*100:.2f}%")
             print('#############################')
 
 
 
-    ##################### MODEL Leakage #######################
+    ##################### MODEL LIC score #######################
     if args.calc_model_leak:
-        print('--- calc MODEL Leakage ---')
+        print('--- calc MODEL LIC score---')
         ## Captioning ##
         if args.task == 'captioning':
             print('-- Task is Captioning --')
@@ -391,7 +391,7 @@ def main(args):
             val_acc, val_loss, val_male_acc, val_female_acc, avg_score = calc_leak(args, model, train_dataloader, test_dataloader)
 
             print('########### Reluts ##########')
-            print(f'\t Avg score: {avg_score*100:.2f}%')
+            print(f'LIC score (LIC_M): {avg_score*100:.2f}%')
             #print(f'\t Male. Acc: {val_male_acc*100:.2f}%')
             #print(f'\t Female. Acc: {val_female_acc*100:.2f}%')
             print('#############################')

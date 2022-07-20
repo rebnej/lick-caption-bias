@@ -334,6 +334,8 @@ def main(args):
     TEXT = data.Field(tokenize = 'spacy', tokenizer_language ='en_core_web_sm', include_lengths = True)
 
     LABEL = data.LabelField(dtype = torch.float)
+
+    gender_obj_cap_mw_entries = pickle.load(open('bias_data/Human_Ann/gender_obj_cap_mw_entries.pkl', 'rb')) # Human captions
     
     #Select captioning model
     if args.cap_model == 'nic':
@@ -387,7 +389,7 @@ def main(args):
     gender_words = masculine + feminine
 
 
-    ##################### ANN Leakage #######################
+    ##################### ANN LIC score #######################
     if args.calc_ann_leak:
         print('--- calc ANN Leakage ---')
         ## Captioning ##
@@ -551,13 +553,13 @@ def main(args):
             female_avg_score = sum(female_score_list) / len(female_score_list)
 
             print('########## Results ##########')
-            print(f"\t Avg score: {avg_score*100:.2f}%")
+            print(f"LIC score (LIC_D): {avg_score*100:.2f}%")
             #print(f"\t Female score: {female_avg_score*100:.2f}%")
             #print(f"\t Male score: {male_avg_score*100:.2f}%")
             #print('!Random avg score', score_list, sum(rand_score_list) / len(rand_score_list))
             print('#############################')
 
-    ########### MODEL LEAKAGE ###########
+    ########### MODEL LIC score ###########
     if args.calc_model_leak:
         print('--- calc MODEL Leakage ---')
         ## Captioning ##
@@ -711,7 +713,7 @@ def main(args):
 
         valid_loss, valid_acc, avg_score, male_acc, female_acc, male_score, female_score  = evaluate(model, test_iterator, criterion, args.batch_size, TEXT, args)
         print('########## Results ##########')
-        print(f'\t Avg score: {avg_score*100:.2f}%')
+        print(f'LIC score (LIC_M): {avg_score*100:.2f}%')
         #print(f'\t Male. score: {male_score*100:.2f}%')
         #print(f'\t Female. score: {female_score*100:.2f}%')
         print('#############################')
