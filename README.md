@@ -44,31 +44,19 @@ To compute bias amplification, compare the accuracies of the 2 classifiers.
 1. train the classifier on human/generated captions. 
 2. calculate LIC on human/generated captions.
 
-  ### For LSTM classifier
-    For training the classifier and calculating LIC on human captions in terms of gender bias.   
-    - sh run_gender_lstm_ann.sh 
+  - To train the **LSTM** classifier on **human captions** and compute LIC in terms of **gender** bias run:
     
-    For training the classifier and calculating LIC on generated captions by captioning models in terms of gender bias.
-    - sh run_gender_lstm_model.sh 
+    `python lstm_leakage.py --seed $int --cap_model $model_name --calc_ann_leak True`
     
-    For training the classifier and calculating LIC on human captions in terms of racial bias.
-    - sh run_race_lstm_ann.sh 
+  Where `$int` is the arbitrary integer for random seed and `$model_name` is the choice of a captioning model to be compared (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`).
+
+  - To train the **LSTM** classifier on **generated captions** and compute LIC in terms of **gender** bias run:
     
-    For training the classifier and calculating LIC on generated captions by captioning models in terms of racial bias.
-    - sh run_race_lstm_model.sh 
+    `python lstm_leakage.py --seed $int --cap_model $model_name --calc_model_leak True`
     
-  ### For BERT classifier
-    For training the classifier and calculating LIC on human captions in terms of gender bias. 
-    - sh run_gender_bert_ann.sh 
-    
-    For training the classifier and calculating LIC on generated captions by captioning models in terms of gender bias.
-    - sh run_gender_bert_model.sh 
-    
-    For training the classifier and calculating LIC on human captions in terms of racial bias.
-    - sh run_race_bert_ann.sh 
-    
-    For training the classifier and calculating LIC on generated captions by captioning models in terms of racial bias.
-    - sh run_race_bert_model.sh 
+  Where `$int` is the arbitrary integer for random seed and `$model_name` is the choice of a captioning model  (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`). 
+
+ 
     
   ### For BERT classifier (BERT is not finetuned)
     For training the classifier and calculating LIC on human captions in terms of gender bias. 
