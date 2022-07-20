@@ -3,7 +3,7 @@ This repository contains source code necessary to reproduce the results presente
 
 
 <div align="center">
-<img src="run_scripts/LIC_test.png" width="650pix"/>
+<img src="run_scripts/LIC_test.png" width="700pix"/>
 </div>
 
 
