@@ -54,22 +54,21 @@ To compute bias amplification, compare the accuracies of the 2 classifiers.
     
     `python lstm_leakage.py --seed $int --cap_model $model_name --calc_model_leak True`
     
-  Where `$int` is the arbitrary integer for random seed and `$model_name` is the choice of a captioning model  (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`). 
+  Where `$model_name` is the choice of a captioning model  (i.e. `nic`, `sat`, `fc`, `att2in`, `updn`, `transformer`, `oscar`, `nic_equalizer`, or `nic_plus`). 
+  
+  - To train the **BERT** classifier on **human captions** and compute LIC in terms of **gender** bias run:
+    
+    `python bert_leakage.py --seed $int --cap_model $model_name --calc_ann_leak True`
+    
+  - To train the **BERT** classifier on **generated captions** and compute LIC in terms of **gender** bias run:
+    
+    `python bert_leakage.py --seed $int --cap_model $model_name --calc_model_leak True`
 
- 
-    
-  ### For BERT classifier (BERT is not finetuned)
-    For training the classifier and calculating LIC on human captions in terms of gender bias. 
-    - sh run_gender_bert_freeze_ann.sh 
-    
-    For training the classifier and calculating LIC on generated captions by captioning models in terms of gender bias.
-    - sh run_gender_bert_freeze_model.sh 
-    
-    For training the classifier and calculating LIC on human captions in terms of racial bias.
-    - sh run_race_bert_freeze_ann.sh 
-    
-    For training the classifier and calculating LIC on generated captions by captioning models in terms of racial bias.
-    - sh run_race_bert_freeze_model.sh 
+**Note**: If you compute LIC in terms of **racial** bias, please run `race_lstm_leakage.py` or `race_bert_leakage.py`.
+  
+**Note**: To avoid updating BERT parameters, you can add `--freeze_bert True`, `--num_epochs 20`, and `--learning_rate 5e-5` 
+  
+  
     
 ## Results
 <div align="center">
