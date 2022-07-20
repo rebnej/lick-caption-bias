@@ -1,3 +1,10 @@
+<style type="text/css">
+<!--
+.orange {background-color:#ffcc99;}
+.violet {background-color:#6633cc; color:#ffffff;}
+-->
+</style>
+
 # Quantifying Societal Bias Amplification in Image Captioning
 This repository contains source code necessary to reproduce the results presented in the paper [Quantifying Societal Bias Amplification in Image Captioning](https://openaccess.thecvf.com/content/CVPR2022/html/Hirota_Quantifying_Societal_Bias_Amplification_in_Image_Captioning_CVPR_2022_paper.html) (CVPR 2022, Oral). Please check the project website [here](https://sites.google.com/view/cvpr-2022-quantify-bias/home).
 
