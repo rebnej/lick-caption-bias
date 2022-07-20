@@ -11,7 +11,7 @@ LIC metric measures how much biased a set of model generated captions are with r
 3. Calculate LIC scores for each classifier. 
 4. To compute bias amplification, take the difference of the LIC socres between 2 classifiers.
 
-文字に<span style="background-color:green">背景色</span>をつける<br>。
+%%{bg:lime}文字に緑色の背景色を付ける%%。
 
 <div align="center">
 <img src="run_scripts/LIC_classifier.png" width="600pix"/>
