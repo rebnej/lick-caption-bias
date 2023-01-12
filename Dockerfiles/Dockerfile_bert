@@ -1,0 +1,6 @@
+FROM python:3.7.5-slim
+RUN mkdir fact-project-fork
+COPY . ./fact-project-fork
+WORKDIR "/fact-project-fork"
+RUN ls
+RUN pip install -r bert_requirments.txt
