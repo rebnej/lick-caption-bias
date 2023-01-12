@@ -1,6 +1,14 @@
+#Pull the python 3.7 image as required in the requirements of the paper.
 FROM python:3.7.5-slim
+#We make the directory to store our repo
 RUN mkdir fact-project-fork
-COPY . ./fact-project-fork
+#Copy the requirements to the docker image, we do not want to run this again unless requirments do change.
+COPY bert_requirements.txt ./fact-project-fork/bert_requirements.txt
+#Change the working directory to our repo.
 WORKDIR "/fact-project-fork"
+#Verify the files using ls.
 RUN ls
-RUN pip install -r bert_requirments.txt
+#Install requirements.txt for bert model
+RUN pip install -r bert_requirements.txt
+#Copy the repo to the docker working directory
+COPY . ./fact-project-fork
