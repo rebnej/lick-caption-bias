@@ -1,6 +1,6 @@
-numpy=1.21.2 
-pytorch=1.9
-torchtext=0.10.0 
-spacy=3.4.0 
-sklearn=1.0.2 
-nltk=3.6.3
+numpy==1.21.2 
+pytorch==1.9
+torchtext==0.10.0 
+spacy==3.4.0 
+sklearn==1.0.2 
+nltk==3.6.3
