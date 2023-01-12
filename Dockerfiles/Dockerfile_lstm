@@ -13,3 +13,4 @@ RUN ls
 RUN pip install -r lstm_requirements.txt
 #Copy the repo to the docker working directory
 COPY . ./fact-project-fork
+RUN python3 -m spacy download en_core_web_sm

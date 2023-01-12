@@ -12,3 +12,4 @@ RUN ls
 RUN pip install -r bert_requirements.txt
 #Copy the repo to the docker working directory
 COPY . ./fact-project-fork
+RUN python -m spacy download en_core_web_sm
